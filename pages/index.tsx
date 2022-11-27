@@ -7,6 +7,7 @@ import { auth } from "../firebase";
 
 const Home: NextPage = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  console.log("error", error);
   const router = useRouter();
   console.log("user", user);
 
@@ -15,11 +16,11 @@ const Home: NextPage = () => {
   const handleClick = useCallback(async () => {
     try {
       await signInWithGoogle();
-      router.push("/dashboard");
+      user && router.push("/dashboard");
     } catch (err) {
       console.log("err", err);
     }
-  }, [signInWithGoogle, router]);
+  }, [signInWithGoogle, router, user]);
 
   return (
     <Box display="flex" flex="1" height="100vh" flexDirection="column">
