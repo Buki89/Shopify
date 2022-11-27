@@ -1,11 +1,10 @@
 import { Box, Button, Typography } from "@mui/material";
-import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useCallback } from "react";
+import { FC, useCallback } from "react";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 
-const Home: NextPage = () => {
+const Home: FC = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   console.log("error", error);
   const router = useRouter();
@@ -33,6 +32,7 @@ const Home: NextPage = () => {
           Sign in with google
         </Button>
       </Box>
+      <div style={{ width: "10px", height: "10px", backgroundColor: "#f00" }} />
     </Box>
   );
 };
