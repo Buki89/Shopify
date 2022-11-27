@@ -13,14 +13,15 @@ const Home: NextPage = () => {
 
   console.log("user", user);
 
-  const handleClick = useCallback(async () => {
+  const handleClick = useCallback(() => {
     try {
-      await signInWithGoogle();
-      user && router.push("/dashboard");
+      signInWithGoogle().then(() => {
+        router.push("/dashboard");
+      });
     } catch (err) {
       console.log("err", err);
     }
-  }, [signInWithGoogle, router, user]);
+  }, [signInWithGoogle, router]);
 
   return (
     <Box display="flex" flex="1" height="100vh" flexDirection="column">
