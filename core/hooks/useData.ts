@@ -28,13 +28,18 @@ export const useData: UseData = (uid) => {
       setLoading(true);
       const shopingListReference = ref(database, path);
       onValue(shopingListReference, (snapshot) => {
-        const data = snapshot.val() as Record<string, ShopingItem>;
-        const keys = Object.keys(data);
-        const tranformedData: ShopingItem[] = keys.map((key) => {
-          return data[key];
-        });
+        const data = snapshot.val() as Record<string, ShopingItem> | null;
+        console.log("data", data);
+        if (data) {
+          const keys = Object.keys(data);
+          const tranformedData: ShopingItem[] = keys.map((key) => {
+            return data[key];
+          });
+
+          setLoading(false);
+          setList(tranformedData || []);
+        }
         setLoading(false);
-        setList(tranformedData || []);
       });
     }
   };

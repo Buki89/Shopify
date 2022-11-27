@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
@@ -22,10 +22,15 @@ const Home: NextPage = () => {
   }, [signInWithGoogle, router]);
 
   return (
-    <Box>
-      <Button variant="contained" onClick={handleClick}>
-        Sign in with google
-      </Button>
+    <Box display="flex" flex="1" height="100vh" flexDirection="column">
+      <Box flex="2" display="flex" justifyContent="center" alignItems="center">
+        <Typography variant="h3">Shopify</Typography>
+      </Box>
+      <Box flex="3" display="flex" justifyContent="center" alignItems="center">
+        <Button variant="contained" onClick={handleClick}>
+          Sign in with google
+        </Button>
+      </Box>
     </Box>
   );
 };
